@@ -10,7 +10,20 @@ Tarvitaan riittävän uusi Node.js versio. Varminta on asentaa uusin.
 
 ### Asennus
 
-Backend ja frontend hakemistoissa suoritetaan ensin `npm install`.
+#### Backend
+
+`npm install`
+
+0. `cd backend`
+1. `npm install`
+2. `cd ..`
+3. `git config core.hooksPath .husky`
+
+Tämän jälkeen ennen commit'ia ajetaan testit.
+
+#### Frontend
+
+`npm install`
 
 ### Käynnistäminen
 
