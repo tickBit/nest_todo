@@ -1,2 +1,2 @@
-cd backend
-npm test
+#!/usr/bin/env sh
+npm --prefix backend test

@@ -11,7 +11,7 @@ export class TodosService {
   private todos = [
     {
       id: randomUUID(),
-      todoName: 'Go fishing',
+      todoName: 'Go shopping',
       done: false,
     },
   ];
