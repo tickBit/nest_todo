@@ -1,7 +1,12 @@
 # Backend Nest.js:llä
 
-Backendiä voisi vielä optimoida. Toimii näinkin.
+Minimaalinen backend.
 
-## Uutta
+## Setup
 
-- backendiin lisättyy kokeilumielessä husky-paketti, joka on alustettu komennolla `npx husky init`
+0. `cd backend`
+1. `npm install`
+2. `cd ..`
+3. `git config core.hooksPath .husky`
+
+Tämän jälkeen ennen commit'ia ajetaan testit.
