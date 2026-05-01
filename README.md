@@ -8,6 +8,10 @@ Tässä ei ole "oikeaa" tietokantaa.
 
 Tarvitaan riittävän uusi Node.js versio. Varminta on asentaa uusin.
 
+NestJs pitää olla globaalisti asennettuna.
+
+**Sovellus on nykyisellään vielä kesken**
+
 ### Asennus
 
 #### Backend
@@ -32,4 +36,3 @@ Bakcend: `npm run start:dev`
 Frontend: `npm run dev`
 
 ![todo](https://github.com/user-attachments/assets/8b792371-b6ba-47ff-ae2b-c86fca52b3a1)
-
