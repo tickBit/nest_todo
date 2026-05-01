@@ -10,7 +10,7 @@ import {
 
 import { AddTodoDto } from './dto/add-todo.dto';
 import { TodosService } from './todos.service';
-import { JwtAuthGuard } from '../auth/Guards/JwtGuard';
+import { JwtAuthGuard } from '../auth/guards/jwt.auth.guard';
 
 @Controller('todos')
 export class TodosController {
