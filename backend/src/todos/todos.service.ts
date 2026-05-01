@@ -6,15 +6,15 @@ import { AddTodoDto } from './dto/add-todo.dto';
     The "database" and its methods
 */
 
+interface Todo {
+  id: string;
+  todoName: string;
+  done: boolean;
+}
+
 @Injectable()
 export class TodosService {
-  private todos = [
-    {
-      id: randomUUID(),
-      todoName: 'Go shopping',
-      done: false,
-    },
-  ];
+  private todos: Todo[] = [];
 
   getAll() {
     // return todos as json data
@@ -22,7 +22,7 @@ export class TodosService {
   }
 
   addTodo(todo: AddTodoDto) {
-    const newTodo = {
+    const newTodo: Todo = {
       id: randomUUID(),
       todoName: todo.todoText,
       done: false,
@@ -32,6 +32,7 @@ export class TodosService {
   }
 
   toggleDone(id: string) {
+    if (this.todos.length === 0) return;
     this.todos.forEach((todo) => {
       if (todo.id === id) {
         todo.done = !todo.done;
@@ -40,6 +41,7 @@ export class TodosService {
   }
 
   deleteTodo(id: string) {
+    if (this.todos.length === 0) return;
     this.todos.forEach((todo, i) => {
       if (todo.id === id) {
         this.todos.splice(i, 1);

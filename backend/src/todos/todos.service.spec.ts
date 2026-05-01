@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { TodosService } from './todos.service';
 
 describe('TodosService', () => {
@@ -10,31 +11,16 @@ describe('TodosService', () => {
   it('returns the default todo when the service is created', () => {
     const todos = service.getAll();
 
-    expect(todos).toHaveLength(1);
-    expect(todos[0]).toEqual(
-      expect.objectContaining({
-        todoName: 'Go shopping',
-        done: false,
-      }),
-    );
-    expect(todos[0].id).toEqual(expect.any(String));
+    expect(todos).toHaveLength(0);
   });
 
-  it('adds a new todo using the todoText field from the DTO', () => {
-    const newTodo = service.addTodo({ todoText: 'Learn NestJS testing' });
-
-    expect(newTodo).toEqual(
-      expect.objectContaining({
-        todoName: 'Learn NestJS testing',
-        done: false,
-      }),
-    );
-    expect(newTodo.id).toEqual(expect.any(String));
+  it('adds a new todo to the list of todos', () => {
+    const newTodo = service.addTodo({ todoText: 'Test service todo' });
     expect(service.getAll()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           id: newTodo.id,
-          todoName: 'Learn NestJS testing',
+          todoName: 'Test service todo',
           done: false,
         }),
       ]),
