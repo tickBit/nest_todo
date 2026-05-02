@@ -1,7 +1,10 @@
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-    
+
+  const navigate = useNavigate()
+      
   // read form data and send to backend API to create a new user
   const handleSignUp = async(e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +33,9 @@ const SignUp = () => {
       }
 
       console.log('User registered:', data);
+      localStorage.setItem('access_token', data.access_token);
+      navigate('/');
+          
     } catch (error) {
       console.error('Error registering user:', error);
     }
