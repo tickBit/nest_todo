@@ -41,7 +41,9 @@ Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista 
 
 ## Huom!
 
+Tarvitset myös `.env`-tiedoston, joka sinun olisi tehtävä itse. Sen ainoa sisältö on:
+`JWT_SECRET=my_secret_key`
+
 Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-kohdan osalta sovellusta kokeillessa.
 
 <img width="1018" height="317" alt="TODO" src="https://github.com/user-attachments/assets/c3c2c9cc-cd50-44a0-bf90-9354125c3fca" />
-
