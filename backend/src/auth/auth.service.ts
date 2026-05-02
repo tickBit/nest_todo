@@ -18,7 +18,7 @@ export class AuthService {
   ) {}
 
   async signup(signupData: SignupDto) {
-    const { email, password, name } = signupData;
+    const { email, password } = signupData;
 
     //Check if email is in use
     const user = this.userService.findEmail(email);
@@ -30,11 +30,11 @@ export class AuthService {
 
     // Create user document and save in mongodb
     this.userService.addUser({
-      name,
       email,
       password: hashedPassword,
       id: randomUUID(),
     });
+    return { message: 'User created successfully' };
   }
 
   async login(credentials: LoginDto) {
