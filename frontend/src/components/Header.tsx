@@ -1,0 +1,14 @@
+const Header = () => {
+  return (
+    <header className="bg-gray-700 p-4">
+        <h1 className="text-2xl text-yellow-400 font-bold">My Todo App</h1>
+        
+        <div className="absolute top-4 right-4">
+          <button className="btn rounded-full bg-green-500 text-white text-sm">Sign Up</button>
+          <button className="btn rounded-full bg-blue-500 text-white text-sm">Login</button>
+        </div>
+    </header>
+    )
+}
+
+export default Header;
