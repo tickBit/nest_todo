@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import type { Task } from './types.ts'
+import Header from './components/Header.tsx';
 
 function App() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const getTodos = async() => {
-    await fetch('/todos', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Tasks fetched:', data);
-      setTasks(data);
-    })
-    .catch(error => console.error('Error fetching tasks:', error));
-  }
+  const getAuthHeaders = (): Record<string, string> => {
+    const token = localStorage.getItem('access_token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  };
   
   const handleAddTask = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -31,23 +22,43 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...getAuthHeaders(),
         },
         body: JSON.stringify({ todoText: input.value.trim() }),
-        }).then(response => response.json())
+        }).then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
         .then(data => {
           console.log('Task added:', data);
-          setTasks([...tasks, data]);
+          setTasks(currentTasks => [...currentTasks, data]);
           input.value = '';
         })
         .catch(error => console.error('Error adding task:', error));
   }
 
   useEffect(() => {
-    
-    const initializeTasks = async () => {
-      await getTodos();
-    }
-    initializeTasks();
+   
+   async function getTodos() {
+    await fetch('/todos', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          ...getAuthHeaders(),
+        },
+      })
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        console.log('Tasks fetched:', data);
+        setTasks(data);
+      })
+      .catch(error => console.error('Error fetching tasks:', error));
+   }
+   
+    getTodos();
     
   }, []);
   
@@ -60,6 +71,7 @@ function App() {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        ...getAuthHeaders(),
       },
     })
     .then(response => {
@@ -75,16 +87,19 @@ function App() {
   return (
     <>
     <div className="App">
-      <h1>Simple Todo App</h1>
+      <Header />
       
-        <input type="text" placeholder="Enter a task" />
-        <button onClick={(e) => handleAddTask(e)}>Add Task</button>
-
+      <div className='center'>
+        <input className='bg-blue-50 text-black-100' type="text" placeholder="Enter a task" />
+        <button className='btn rounded-full bg-blue-800 text-white text-xl' onClick={(e) => handleAddTask(e)}>Add Task</button>
+      </div>
+      
+      <div className='center'>
       <div className="task-list">
         {tasks.length === 0 ? (
           <p>No tasks yet!</p>
         ) : (<>
-        {tasks.map((task, index) => (
+        {tasks && tasks.map((task, index) => (
           <div key={index} className="task-item">
             <label>{task.todoName}</label>
 
@@ -94,18 +109,18 @@ function App() {
               onChange={() => {
                 const updatedDone = !task.done;
                 
-                // Päivitä UI
                 const updatedTasks = tasks.map(t => 
                   t.id === task.id ? { ...t, done: updatedDone } : t
                 );
                 setTasks(updatedTasks);
                 
                 // Läheta backend-pyyntö
-                fetch(`/todos/${task.id}`)
+                fetch(`/todos/${task.id}`, {
+                  headers: getAuthHeaders(),
+                })
                   .then(response => {
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     console.log('Task updated successfully');
-                    // Älä yritä parsata JSON:ä, jos vastaus on tyhjä
                     return null;
                   })
                   .then(() => console.log('Update completed'))
@@ -118,6 +133,7 @@ function App() {
           </div>
         ))}
         </>)}
+      </div>
       </div>
     </div>
     </>
