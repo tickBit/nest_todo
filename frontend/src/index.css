@@ -18,3 +18,8 @@ input {
 .task-item {
   display: flex;
 }
+
+.error-container {
+  display: block;
+  text-align: center;
+}
