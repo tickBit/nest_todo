@@ -39,5 +39,9 @@ Tuo .husky-juttu siis ajetaan ihan projektin juuresta.
 
 Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista ainakin yhden on oltava numero. Virheiden käsittely on aikalailla toteuttamatta.
 
+## Huom!
+
+Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-kohdan osalta sovellusta kokeillessa.
+
 <img width="1018" height="317" alt="TODO" src="https://github.com/user-attachments/assets/c3c2c9cc-cd50-44a0-bf90-9354125c3fca" />
 
