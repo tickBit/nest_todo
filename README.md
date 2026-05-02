@@ -34,7 +34,8 @@ Tuo .husky-juttu siis ajetaan ihan projektin juuresta.
 
 - mene frontend-hakemistoon
 
-`npm install`
-`npm run dev`
+1. `npm install`
+2. `npm run dev`
 
 ![todo](https://github.com/user-attachments/assets/8b792371-b6ba-47ff-ae2b-c86fca52b3a1)
+
