@@ -39,5 +39,5 @@ Tuo .husky-juttu siis ajetaan ihan projektin juuresta.
 
 Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista ainakin yhden on oltava numero. Virheiden käsittely on aikalailla toteuttamatta.
 
-![todo](https://github.com/user-attachments/assets/8b792371-b6ba-47ff-ae2b-c86fca52b3a1)
+<img width="1018" height="317" alt="TODO" src="https://github.com/user-attachments/assets/c3c2c9cc-cd50-44a0-bf90-9354125c3fca" />
 
