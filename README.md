@@ -37,5 +37,7 @@ Tuo .husky-juttu siis ajetaan ihan projektin juuresta.
 1. `npm install`
 2. `npm run dev`
 
+Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista ainakin yhden on oltava numero. Virheiden käsittely on aikalailla toteuttamatta.
+
 ![todo](https://github.com/user-attachments/assets/8b792371-b6ba-47ff-ae2b-c86fca52b3a1)
 
