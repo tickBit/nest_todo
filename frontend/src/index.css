@@ -14,3 +14,7 @@ input {
   justify-content: center;
   align-items: center;
 }
+
+.task-item {
+  display: flex;
+}
