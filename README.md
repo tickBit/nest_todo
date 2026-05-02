@@ -46,4 +46,4 @@ Tarvitset myös `.env`-tiedoston, joka sinun olisi tehtävä itse. Sen ainoa sis
 
 Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-kohdan osalta sovellusta kokeillessa.
 
-<img width="1018" height="317" alt="TODO" src="https://github.com/user-attachments/assets/c3c2c9cc-cd50-44a0-bf90-9354125c3fca" />
+<img width="1013" height="436" alt="TODO" src="https://github.com/user-attachments/assets/f377e9c5-9657-44e3-9f7e-555778574743" />
