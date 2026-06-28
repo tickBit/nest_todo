@@ -1,7 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { AppModule } from './../app.module';
+import { describe, it, beforeEach, afterEach, expect } from '@jest/globals';
 
 type TodoResponse = {
   id: string;
@@ -19,7 +20,6 @@ describe('Todos API (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-
     app = moduleFixture.createNestApplication();
     await app.init();
   });
@@ -35,6 +35,7 @@ describe('Todos API (e2e)', () => {
     const todos = response.body as TodoResponse[];
 
     expect(todos).toHaveLength(1);
+
     expect(todos[0]).toEqual(
       expect.objectContaining({
         todoName: 'Go shopping',
