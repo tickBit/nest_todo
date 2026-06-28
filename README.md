@@ -47,3 +47,5 @@ Tarvitset myös `.env`-tiedoston, joka sinun olisi tehtävä itse. Sen ainoa sis
 Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-kohdan osalta sovellusta kokeillessa.
 
 <img width="1013" height="436" alt="TODO" src="https://github.com/user-attachments/assets/f377e9c5-9657-44e3-9f7e-555778574743" />
+
+Sovellus ei ole vielä kovin informatiivinen. Ensin pitää rekisteröityä (Signup), sitten kirjautua (Login) ja sitten voi kirjoittaa TODOja.
