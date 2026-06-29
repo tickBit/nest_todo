@@ -1,25 +1,40 @@
 import { Injectable } from '@nestjs/common';
+import { DatabaseService } from '../database/database.service';
 import { UUID } from 'crypto';
 
-export interface User {
+type Todo = {
+  id: UUID;
+  todoName: string;
+  done: boolean;
+};
+
+type User = {
   id: UUID;
   email: string;
   password: string;
-}
+  todos: Todo[];
+};
 
 @Injectable()
 export class UserService {
-  private users: User[] = [];
+  constructor(private db: DatabaseService) {}
 
-  findOne(id: UUID) {
-    return this.users.find((user) => user.id === id);
+  list() {
+    return this.db.data;
   }
+
+  async create(email: string, password: string) {
+    const user: User = { id: crypto.randomUUID(), email, password, todos: [] };
+    this.db.data.users.push(user);
+    await this.db.save();
+    return user;
+  }
+
   findEmail(email: string): User | null {
-    const user = this.users.find((user) => user.email === email);
-    if (user) return user;
-    else return null;
-  }
-  addUser(user: User) {
-    return this.users.push(user);
+    if (this.db.data !== null) {
+      const user = this.db.data.users.find((user) => user.email === email);
+      if (user!) return user;
+    }
+    return null;
   }
 }
