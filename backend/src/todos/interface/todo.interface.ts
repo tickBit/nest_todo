@@ -1,4 +1,4 @@
 export interface Todo {
-  text: string;
+  todoName: string;
   done: boolean;
 }
