@@ -1,51 +1,84 @@
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'node:crypto';
 import { AddTodoDto } from './dto/add-todo.dto';
+import { DatabaseService } from '../database/database.service';
+import { randomUUID, UUID } from 'crypto';
 
 /*
     The "database" and its methods
 */
 
-interface Todo {
-  id: string;
+type Todo = {
+  id: UUID;
   todoName: string;
   done: boolean;
-}
+};
+
+type User = {
+  id: UUID;
+  email: string;
+  password: string;
+  todos: Todo[];
+};
 
 @Injectable()
 export class TodosService {
-  private todos: Todo[] = [];
+  constructor(private db: DatabaseService) {}
 
-  getAll() {
+  getAll(userId: UUID) {
     // return todos as json data
-    return this.todos;
+    const user: User | undefined = this.db.data.users.find((user) =>
+      user.id === userId ? user : null,
+    );
+
+    if (user) return user.todos;
+    else return null;
   }
 
-  addTodo(todo: AddTodoDto) {
+  async addTodo(todo: AddTodoDto) {
     const newTodo: Todo = {
       id: randomUUID(),
       todoName: todo.todoText,
       done: false,
     };
-    this.todos.push(newTodo);
+    console.log(todo.todoText);
+
+    const user = this.db.data.users.find((u) => u.id === todo.userId);
+
+    console.log(user?.id, todo.userId);
+    console.log(user);
+
+    user?.todos.push(newTodo);
+
+    await this.db.save();
     return newTodo;
   }
 
-  toggleDone(id: string) {
-    if (this.todos.length === 0) return;
-    this.todos.forEach((todo) => {
-      if (todo.id === id) {
-        todo.done = !todo.done;
-      }
-    });
+  async toggleDone(userId: string, id: string) {
+    if (!this.db.data.users?.length) return;
+
+    const user = this.db.data.users.find((u) => u.id === userId);
+    if (!user) return;
+
+    const todo = user.todos.find((t) => t.id === id);
+    if (!todo) return;
+
+    todo.done = !todo.done;
+
+    await this.db.save();
+    return user.todos;
   }
 
-  deleteTodo(id: string) {
-    if (this.todos.length === 0) return;
-    this.todos.forEach((todo, i) => {
-      if (todo.id === id) {
-        this.todos.splice(i, 1);
-      }
-    });
+  async deleteTodo(userId: string, id: string) {
+    if (!this.db.data.users?.length) return;
+
+    const user = this.db.data.users.find((u) => u.id === userId);
+    if (!user) return;
+
+    const todos = user.todos.filter((t) => t.id !== id);
+
+    user.todos = todos;
+
+    await this.db.save();
+    return todos;
   }
 }
