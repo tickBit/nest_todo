@@ -25,6 +25,8 @@ const SignIn = () => {
           
         const data = await response.json();
       
+        console.log(data);
+        
         if (!response.ok) {
           setMessages([]);
           console.error('SignIn failed:', response.status, data);
@@ -34,9 +36,12 @@ const SignIn = () => {
           return;
         }
         
+        console.log(data);
+        
         setMessages([]);
         console.log('User registered:', data);
         localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('userId', data.id);
         navigate('/');
             
       } catch (error) {
