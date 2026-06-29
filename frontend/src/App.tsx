@@ -17,14 +17,15 @@ function App() {
     
     const input = document.querySelector<HTMLInputElement>('input');
     if (!input || input.value.trim() === '') return;
-
+    
     await fetch('/todos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...getAuthHeaders(),
+          ...getAuthHeaders()
         },
-        body: JSON.stringify({ todoText: input.value.trim() }),
+          body: JSON.stringify({ userId: localStorage.getItem("userId"), todoText: input.value.trim() })
+        ,
         }).then(response => {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.json();
@@ -40,6 +41,7 @@ function App() {
   useEffect(() => {
    
    async function getTodos() {
+     
     await fetch('/todos', {
         method: 'GET',
         headers: {
