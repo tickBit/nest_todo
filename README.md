@@ -16,7 +16,12 @@ Asenna ja käynnistä ensin backend.
 
 - mene backend hakemistoon
 
-`npm install`
+- siellä pitää olla (ja oletuksena on) `db.json`. Sen pitää olla minimaalisimmillaan:
+```
+{
+  "users": []
+}
+```
 
 1. `npm install`
 2. `npm run start:dev`
@@ -38,6 +43,12 @@ Tuo .husky-juttu siis ajetaan ihan projektin juuresta.
 2. `npm run dev`
 
 Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista ainakin yhden on oltava numero. Virheiden käsittely on aikalailla toteuttamatta.
+
+## Käyttäjän luonti komentoriviltä
+
+backend-hakemistossa voi käyttäjän luoda komentoriviltä myös näin:
+
+`npm run src/tools/console.ts createUser <username> <password>`
 
 ## Huom!
 
