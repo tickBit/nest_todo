@@ -2,7 +2,7 @@
 
 Ajatuksena ollut testata tehdä Nest.js:llä backend ja jonkinlainen frontend sille.
 
-Tässä ei ole "oikeaa" tietokantaa, in-memory tietokanta vain.
+Tietokantana käytetään backend-hakemistossa `db.json`-tiedostoa. Sovellus on lähinnä testi sen käyttöön.
 
 ## Asennus ja käynnistys
 
