@@ -48,7 +48,7 @@ Sovellusta kokeillessa salasanassa pitää olla vähintään 6 merkkiä, joista 
 
 backend-hakemistossa voi käyttäjän luoda komentoriviltä myös näin:
 
-`npm run src/tools/console.ts createUser <username> <password>`
+`npm run console createUser <username> <password>`
 
 ## Huom!
 
