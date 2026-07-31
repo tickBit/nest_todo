@@ -39,7 +39,7 @@ const SignIn = () => {
         console.log(data);
         
         setMessages([]);
-        console.log('User registered:', data);
+        console.log('User logged in:', data);
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('userId', data.id);
         navigate('/');
