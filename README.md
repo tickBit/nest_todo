@@ -3,6 +3,7 @@
 Ajatuksena ollut testata tehdä Nest.js:llä backend ja jonkinlainen frontend sille.
 
 Tietokantana käytetään backend-hakemistossa `db.json`-tiedostoa. Sovellus on lähinnä testi sen käyttöön.
+Tietokannassa on yksi käyttäjä `user@test.com`, jolle voi testata passwordless loginia, ks. tuonnempana.
 
 ## Asennus ja käynnistys
 
@@ -53,3 +54,8 @@ Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-koh
 <img width="1013" height="436" alt="TODO" src="https://github.com/user-attachments/assets/f377e9c5-9657-44e3-9f7e-555778574743" />
 
 Sovellus ei ole vielä kovin informatiivinen. Ensin pitää rekisteröityä (Signup), sitten kirjautua (Login) ja sitten voi kirjoittaa TODOja.
+
+## Sovelluksessa on myös passwordless login leluversiona, testailua vain:
+
+<img width="1207" height="430" alt="nest_todo_passwordless_login" src="https://github.com/user-attachments/assets/98f8cc7d-afdc-4f4d-9bdc-c73487d3a02d" />
+
