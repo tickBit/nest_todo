@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './App.css'
 import type { Task } from './types.ts'
 import Header from './components/Header.tsx';
 
 function App() {
 
+  const taskInputRef = useRef<HTMLInputElement>(null)
+  
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const getAuthHeaders = (): Record<string, string> => {
@@ -15,8 +17,8 @@ function App() {
   const handleAddTask = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     
-    const input = document.querySelector<HTMLInputElement>('input');
-    if (!input || input.value.trim() === '') return;
+    const input = taskInputRef.current
+    if (!input || input.value.trim() === '') return
     
     await fetch('/todos', {
         method: 'POST',
@@ -38,11 +40,14 @@ function App() {
         .catch(error => console.error('Error adding task:', error));
   }
 
-  useEffect(() => {
    
-   async function getTodos() {
+  useEffect(() => {
+    async function getTodos() {
+      const userId = localStorage.getItem('userId')
+    
+      if (!userId) return
      
-    await fetch('/todos', {
+    await fetch(`/todos/${userId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +74,8 @@ function App() {
     
     console.log('Deleting task with id:', id);
     // call backend API to delete the task
-    await fetch(`/todos/${id}`, {
+    const userId = localStorage.getItem('userId')
+    await fetch(`/todos/${userId}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +98,12 @@ function App() {
       <Header />
       
       <div className='center'>
-        <input className='bg-blue-50 text-black-100' type="text" placeholder="Enter a task" />
+        <input
+          ref={taskInputRef}
+          className="bg-blue-50 text-black-100"
+          type="text"
+          placeholder="Enter a task"
+        />
         <button className='btn rounded-full bg-blue-800 text-white text-xl' onClick={(e) => handleAddTask(e)}>Add Task</button>
       </div>
       
