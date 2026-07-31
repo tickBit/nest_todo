@@ -37,4 +37,12 @@ export class UserService {
     }
     return null;
   }
+
+  findUserById(id: string): User | null {
+    if (this.db.data !== null) {
+      const user = this.db.data.users.find((user) => user.id === id);
+      if (user!) return user;
+    }
+    return null;
+  }
 }
