@@ -16,13 +16,6 @@ Asenna ja käynnistä ensin backend.
 
 - mene backend hakemistoon
 
-- siellä pitää olla (ja oletuksena on) `db.json`. Sen pitää olla minimaalisimmillaan:
-```
-{
-  "users": []
-}
-```
-
 1. `npm install`
 2. `npm run start:dev`
 
