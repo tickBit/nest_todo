@@ -9,17 +9,22 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    proxy: {
-      '/auth': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        secure: false,
-      },
-      '/todos': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        secure: false,
-      },
+  proxy: {
+    '/auth': {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+      secure: false,
+      bypass: (req) => {
+      if (req.url?.startsWith('/auth/callback')) {
+        return req.url
+      }
+    },
+    },
+    '/todos': {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+      secure: false,
     },
   },
+},
 })
