@@ -18,9 +18,9 @@ export class TodosController {
   constructor(private todosService: TodosService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  findAll(@Param('id') id: UUID) {
-    return this.todosService.getAll(id);
+  @Get(':userId')
+  findAll(@Param('userId') userId: UUID) {
+    return this.todosService.getAll(userId);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -28,14 +28,15 @@ export class TodosController {
   addTodo(@Body() addTodoItem: AddTodoDto) {
     return this.todosService.addTodo(addTodoItem);
   }
+
   @UseGuards(JwtAuthGuard)
-  @Delete('/:userId/id')
+  @Delete(':userId/:id')
   deleteTodo(@Param('userId') userId: string, @Param('id') id: string) {
     return this.todosService.deleteTodo(userId, id);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/:userId/id')
+  @Get(':userId/:id')
   toggleDone(@Param('userId') userId: string, @Param('id') id: string) {
     return this.todosService.toggleDone(userId, id);
   }
