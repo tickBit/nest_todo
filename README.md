@@ -59,3 +59,5 @@ Sovellus ei ole vielä kovin informatiivinen. Ensin pitää rekisteröityä (Sig
 
 <img width="1207" height="430" alt="nest_todo_passwordless_login" src="https://github.com/user-attachments/assets/98f8cc7d-afdc-4f4d-9bdc-c73487d3a02d" />
 
+Todellisessa sovelluksessa magic link lähetettäisiin emailitse...
+
