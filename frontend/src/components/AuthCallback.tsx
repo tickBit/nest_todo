@@ -32,7 +32,7 @@ const AuthCallback = () => {
       })
   }, [navigate, searchParams])
 
-  return <div>Kirjaudutaan sisään...</div>
+  return <div>Logging in...</div>
 }
 
 export default AuthCallback
