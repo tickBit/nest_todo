@@ -44,11 +44,6 @@ backend-hakemistossa voi käyttäjän luoda komentoriviltä myös näin:
 
 `npm run console createUser <username> <password>`
 
-## Huom!
-
-Tarvitset myös `.env`-tiedoston, joka sinun olisi tehtävä itse. Sen ainoa sisältö on:
-`JWT_SECRET=my_secret_key`
-
 Selaimen localStorage voi olla järkevää tyhjentään ainakin access_token-kohdan osalta sovellusta kokeillessa.
 
 <img width="1013" height="436" alt="TODO" src="https://github.com/user-attachments/assets/f377e9c5-9657-44e3-9f7e-555778574743" />
