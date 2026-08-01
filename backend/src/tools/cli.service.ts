@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { writeFile } from 'fs/promises';
 import { UUID } from 'crypto';
 import { UserService } from '../users/user.service';
 import { DatabaseService } from '../database/database.service';
